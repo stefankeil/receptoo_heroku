@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Recipes</h1>
+
+<%= form_tag(recipes_path, :method => "get", id: "search-form") do %>
+<%= text_field_tag :search, params[:search], placeholder: "Search Recipes" %>
+<%= submit_tag "Search" %>
+<% end %>
+
+<table border="1" style="border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th colspan="5">Recipes</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @recipes.each do |recipe| %>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Duration</th>
+        <th></th>
+      </tr>
+      <tr>
+        <td><%= recipe.id %></td>
+        <td><%= recipe.title %></td>
+        <td><%= recipe.description %></td>
+        <td><%= recipe.duration %></td>
+        <td>
+          <%= link_to 'Show', recipe %>
+          <%= link_to 'Edit', edit_recipe_path(recipe) %>
+          <%= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Recipe', new_recipe_path %>

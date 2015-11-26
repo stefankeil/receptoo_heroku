@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>
+	<%= @recipe.title %>
+</h1>
+
+<table>
+  <tbody>
+    <tr><b>Description:</b> <%= @recipe.description %></tr>   <br>
+    <tr><b>Duration:</b> <%= @recipe.duration %> min</tr>     <br>
+    <tr><b>Difficulty:</b> <%= @recipe.difficulty %></tr>     <br>
+    <tr><b>Rating:</b> <%= @recipe.rating %> Stars</tr>       <br>
+    <tr><b>Category:</b> <%= @recipe.category %></tr>         <br>
+    <tr><b>Ingredients:
+      <% @recipe.ingredients.each do |ingredient| %>
+        <%= ingredient.name %> (<%= ingredient.ingredient_type %>)
+      <% end %>
+    </tr>
+    <br> <br>
+
+    <tr><b>Created by:</b> <%= @recipe.creator_name %></tr>   <br>
+  </tbody>
+</table>
+
+<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+<%= link_to 'Back', recipes_path %>

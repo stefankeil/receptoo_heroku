@@ -1,0 +1,27 @@
+<%= form_for(@recipe) do |f| %>
+  <% if @recipe.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+
+      <ul>
+      <% @recipe.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+    <%= f.label :description %>
+    <%= f.text_area :description, size: "24x6" %>
+    <%= f.label :category %>
+    <%= f.select :category, options_for_select(Recipe.categories.keys.to_a) %>
+    <%= f.label :ingredients %>
+    <%= f.collection_check_boxes :ingredients, Ingredient.all, :id, :name, :item_wrapper_class => 'checkbox_container' %>
+    <%= f.label :creator_name  %>
+    <%= f.text_field :creator_name %>
+    <%= f.submit %>
+  </div>
+<% end %>
