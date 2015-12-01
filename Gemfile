@@ -39,7 +39,7 @@ group :development, :test do
   end
 
   gem 'capybara'
-
+  gem 'capybara-webkit'
 end
 
 group :development do
