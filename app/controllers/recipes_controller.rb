@@ -4,11 +4,15 @@ class RecipesController < ApplicationController
   # GET /recipes
   # GET /recipes.json
   def index
-    @recipes = Recipe.all
-    if params[:search]
-      @recipes = Recipe.search(params[:search]).order("created_at DESC")
+    if logged_in?
+      @recipes = Recipe.all
+      if params[:search]
+        @recipes = Recipe.search(params[:search]).order("created_at DESC")
+      else
+        @recipes = Recipe.all.order('created_at DESC')
+      end
     else
-      @recipes = Recipe.all.order('created_at DESC')
+      redirect_to login_path
     end
   end
 

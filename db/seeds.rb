@@ -13,4 +13,5 @@ Recipe.delete_all
 
 ingredients = Ingredient.create([{name: 'Tomato', ingredient_type: 1}, {name: 'Chicken', ingredient_type: 0}])
 comments    = Comment.create([{user: 'Thomas', comment_text: "This was awesome"}, {user: "Kerstin", comment_text: "Really tasty"}])
-Recipe.create!(title: "Tomato Chicken Whatever", description: "Cook erverthing well", duration: 20, difficulty: 3, rating: 2, creator_name: "Paul", category: 0, ingredients: [ingredients.first, ingredients.second], comments: [comments.first, comments.second])	
+Recipe.create!(title: "Tomato Chicken Whatever", description: "Cook erverthing well", duration: 20, difficulty: 3, rating: 2, creator_name: "Paul", category: 0, ingredients: [ingredients.first, ingredients.second], comments: [comments.first, comments.second])
+User.create(name: "Example User", email: "user@user.com", password: "foobar", password_confirmation: "foobar")
