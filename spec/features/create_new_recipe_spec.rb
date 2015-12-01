@@ -1,13 +1,22 @@
 require 'rails_helper'
+require 'spec_helper'
 
 describe "creating a new recipe", type: :feature do
+  fixtures :users
   before :each do
+    user = users(:stefan)
+
+    visit '/login'
+    fill_in 'Email', :with => user.email
+    fill_in 'Password', :with => 'password'
+    click_button 'Log in'
+
     Recipe.create(title: "Oma´s Eintopf", 
                   description: "Eintopf mit Kartoffeln und Würstchen",
                   creator_name: "Peter Pan",
                   category: "halal")
   end
-  it "root page shows the poll" do
+  it "root page shows the recipes" do
     visit root_path
     expect(page).to have_content "Oma´s Eintopf"
   end
